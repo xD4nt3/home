@@ -1588,7 +1588,11 @@ function loadBlogList() {
 
 async function loadBlogArticle(articleId) {
     const article = blogArticles.find(a => a.id === articleId);
-    if (!article) return;
+    if (!article) {
+        // Si el artículo no existe, volver al blog
+        showPage('blog');
+        return;
+    }
 
     const container = document.getElementById('blog-article-container');
     
@@ -1601,7 +1605,6 @@ async function loadBlogArticle(articleId) {
     `;
 
     try {
-        // Cargar el archivo markdown
         const response = await fetch(article.file);
         
         if (!response.ok) {
@@ -1609,8 +1612,6 @@ async function loadBlogArticle(articleId) {
         }
         
         const markdownContent = await response.text();
-        
-        // Convertir markdown a HTML
         const htmlContent = marked.parse(markdownContent);
 
         container.innerHTML = `
@@ -1630,7 +1631,23 @@ async function loadBlogArticle(articleId) {
             </div>
         `;
 
-        showPage('blog-article');
+        // Mostrar la página del artículo
+        const homePage = document.getElementById('home-page');
+        homePage.classList.add('hidden');
+        
+        setTimeout(() => {
+            document.querySelectorAll('.content-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('blog-article-page').classList.add('active');
+        }, 300);
+        
+        window.scrollTo(0, 0);
+        
+        // Actualizar URL
+        if (window.location.hash !== `#blog/${articleId}`) {
+            updateURL(`blog/${articleId}`);
+        }
         
     } catch (error) {
         container.innerHTML = `
@@ -1643,7 +1660,16 @@ async function loadBlogArticle(articleId) {
                 </button>
             </div>
         `;
-        showPage('blog-article');
+        
+        const homePage = document.getElementById('home-page');
+        homePage.classList.add('hidden');
+        
+        setTimeout(() => {
+            document.querySelectorAll('.content-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('blog-article-page').classList.add('active');
+        }, 300);
     }
 }
 
@@ -1666,35 +1692,48 @@ scrollToTopBtn.addEventListener('click', () => {
 });
         // Navegación
         function showPage(pageId) {
-            const homePage = document.getElementById('home-page');
-            const targetPage = document.getElementById(pageId + '-page');
-            
-            homePage.classList.add('hidden');
-            
-            setTimeout(() => {
-                document.querySelectorAll('.content-page').forEach(page => {
-                    page.classList.remove('active');
-                });
-                targetPage.classList.add('active');
-                if (pageId === 'blog') {
+    const homePage = document.getElementById('home-page');
+    const targetPage = document.getElementById(pageId + '-page');
+    
+    if (!targetPage) return;
+    
+    homePage.classList.add('hidden');
+    
+    setTimeout(() => {
+        document.querySelectorAll('.content-page').forEach(page => {
+            page.classList.remove('active');
+        });
+        targetPage.classList.add('active');
+        
+        if (pageId === 'blog') {
             loadBlogList();
         }
-            }, 300);
-            
-            window.scrollTo(0, 0);
-        }
+    }, 300);
+    
+    window.scrollTo(0, 0);
+    
+    // Actualizar URL sin causar loop
+    if (window.location.hash !== `#${pageId}`) {
+        updateURL(pageId);
+    }
+}
 
         function showHome() {
-            document.querySelectorAll('.content-page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            setTimeout(() => {
-                document.getElementById('home-page').classList.remove('hidden');
-            }, 200);
-            
-            window.scrollTo(0, 0);
-        }
+    document.querySelectorAll('.content-page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    setTimeout(() => {
+        document.getElementById('home-page').classList.remove('hidden');
+    }, 200);
+    
+    window.scrollTo(0, 0);
+    
+    // Limpiar hash
+    if (window.location.hash) {
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+}
 
         // Mouse tracking para efectos hover
         document.addEventListener('mousemove', (e) => {
@@ -1738,6 +1777,47 @@ scrollToTopBtn.addEventListener('click', () => {
                 observer.observe(document.body, { childList: true, subtree: true });
             });
         }
+        // ===== HASH ROUTING SYSTEM =====
+function updateURL(path) {
+    window.location.hash = path;
+}
+
+function handleRouting() {
+    const hash = window.location.hash.slice(1) || ''; // Quitar el #
+    
+    if (!hash) {
+        // Si no hay hash, mostrar home
+        showHome();
+        return;
+    }
+    
+    // Parsear la ruta
+    const parts = hash.split('/');
+    const section = parts[0];
+    
+    if (section === 'blog') {
+        if (parts[1]) {
+            // Es un artículo específico: #blog/article-id
+            const articleId = parts[1];
+            loadBlogArticle(articleId);
+        } else {
+            // Solo blog: #blog
+            showPage('blog');
+        }
+    } else if (section === 'academy' || section === 'videos' || section === 'resources' || section === 'about' || section === 'links') {
+        // Otras secciones: #academy, #videos, etc.
+        showPage(section);
+    } else {
+        // Ruta no reconocida, volver a home
+        showHome();
+    }
+}
+
+// Escuchar cambios en el hash
+window.addEventListener('hashchange', handleRouting);
+
+// Cargar la ruta inicial cuando se carga la página
+window.addEventListener('load', handleRouting);
     </script>
 </body>
 </html>
