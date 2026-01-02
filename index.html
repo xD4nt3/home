@@ -138,6 +138,7 @@
             opacity: 0;
             transform: scale(0.95);
             pointer-events: none;
+            display: none !important;
         }
 
         .home-header {
@@ -2176,6 +2177,26 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.content-page').forEach(page => {
         observer.observe(page, { attributes: true });
     });
+});
+
+// Fix crítico: Asegurar que home-page desaparece completamente
+document.addEventListener('DOMContentLoaded', function() {
+    const homePage = document.getElementById('home-page');
+    
+    // Observer para detectar cuando se oculta el home
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                if (homePage.classList.contains('hidden')) {
+                    homePage.style.display = 'none';
+                } else {
+                    homePage.style.display = 'flex';
+                }
+            }
+        });
+    });
+    
+    observer.observe(homePage, { attributes: true });
 });
     </script>
 </body>
