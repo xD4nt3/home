@@ -917,7 +917,7 @@
     }
 }
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
     #home-page {
         position: relative;
         height: auto;
@@ -965,7 +965,7 @@
     /* Cards cuadrados */
     .nav-card {
         width: 100%;
-        aspect-ratio: 1 / 1; /* Mantiene proporción cuadrada */
+        aspect-ratio: 1 / 1;
         min-height: 150px;
         display: flex;
         flex-direction: column;
@@ -990,17 +990,26 @@
         left: 15px;
         padding: 10px 20px;
         font-size: 0.9em;
+        position: fixed;
+        z-index: 1001;
     }
 
     .content-page {
-        padding: calc(env(safe-area-inset-top) + 20px) 15px calc(env(safe-area-inset-bottom) + 20px);
-        padding-top: 70px; /* Reducir el padding superior */
+        padding-top: 70px !important; /* ← CRÍTICO: Reducir padding */
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
+
+    .container {
+        padding-top: 0;
+        margin-top: 0;
     }
 
     .page-header {
         padding: 25px 20px;
         margin-bottom: 30px;
-        margin-top: 0; /* Asegurar que no haya margen superior extra */
+        margin-top: 0;
     }
 
     .page-title {
@@ -1036,9 +1045,10 @@
     /* Blog */
     .blog-article {
         padding: 20px;
-        margin-top: 0; /* Sin margen superior */
+        margin-top: 0;
         margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
     }
+
     .blog-article-header {
         padding-top: 0;
         margin-top: 0;
@@ -1066,6 +1076,11 @@
 
     .blog-article-content pre {
         padding: 15px;
+        font-size: 0.85em;
+        overflow-x: auto;
+    }
+
+    .blog-article-content code {
         font-size: 0.85em;
     }
 
@@ -1306,54 +1321,6 @@
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
-    .content-page {
-        padding: calc(env(safe-area-inset-top) + 20px) 15px calc(env(safe-area-inset-bottom) + 20px);
-        padding-top: 70px; /* Reducir el padding superior */
-    }
-
-    .back-button {
-        top: max(10px, env(safe-area-inset-top) + 5px);
-        left: 15px;
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-    .page-header {
-        padding: 25px 20px;
-        margin-bottom: 30px;
-        margin-top: 0; /* Asegurar que no haya margen superior extra */
-    }
-    .profile-image {
-        width: 140px;
-        height: 140px;
-        margin: 0 auto 20px auto;  /* ← Mantener centrado en móvil también */
-        display: block;
-    }
-    .blog-article {
-        padding: 20px;
-        margin-top: 0; /* Sin margen superior */
-        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
-    }
-    .blog-article-header {
-        padding-top: 0;
-        margin-top: 0;
-    }
-
-    .blog-article-title {
-        font-size: 1.8em;
-    }
-
-    .blog-article-content {
-        font-size: 1em;
-    }
-
-    .scroll-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-}
     </style>
 </head>
 <body>
