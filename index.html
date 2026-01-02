@@ -918,124 +918,48 @@
 }
 
         @media (max-width: 768px) {
-    #home-page {
-        position: relative; /* ← Cambiar de fixed a relative */
-        height: auto; /* ← Permitir que crezca según contenido */
-        min-height: 100vh;
-        padding-top: max(40px, env(safe-area-inset-top) + 20px);
-        padding-bottom: max(40px, env(safe-area-inset-bottom) + 20px);
-        justify-content: flex-start;
-    }
-
-    .home-header {
-        margin-bottom: 50px;
-        margin-top: 20px;
-    }
-
-    .home-alias {
-        font-size: 3em;
-        letter-spacing: 2px;
-    }
-
-    .home-subtitle {
-        font-size: 1.2em;
-    }
-
-    .home-tagline {
-        font-size: 1em;
-    }
-
     .nav-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        padding: 0 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 0 15px;
         margin-bottom: 40px;
     }
 
     .nav-card {
         width: 100%;
-        max-width: 160px;
-        height: 160px;
-        margin: 0 auto;
+        height: 0;
+        padding-bottom: 100%;
+        position: relative;
+    }
+
+    .nav-card > * {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .nav-icon {
-        font-size: 2.5em;
+        font-size: 2.2em;
+        margin-bottom: 0;
+        top: 35%;
     }
 
     .nav-title {
-        font-size: 0.95em;
+        font-size: 0.75em;
+        top: 72%;
+        width: 90%;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .home-alias {
+        font-size: 2.5em;
     }
 
     .profile-image {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 20px auto;
-        display: block;
-    }
-
-    .back-button {
-        top: max(15px, env(safe-area-inset-top) + 10px);
-        left: 15px;
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-
-    .page-title {
-        font-size: 2em;
-    }
-
-    .page-header {
-        padding: 30px 20px;
-        margin-bottom: 40px;
-    }
-
-    .content-page {
-        padding: calc(env(safe-area-inset-top) + 80px) 15px calc(env(safe-area-inset-bottom) + 50px);
-    }
-
-    .section {
-        padding: 24px 20px;
-    }
-
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
-
-    .whoami-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ascii-art {
-        font-size: 0.5em;
-    }
-
-    .scroll-to-top {
-        bottom: max(20px, env(safe-area-inset-bottom) + 20px);
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-
-    .blog-article {
-        padding: 20px;
-        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
-    }
-
-    .blog-article-title {
-        font-size: 1.6em;
-    }
-
-    .blog-article-content {
-        font-size: 0.95em;
-    }
-
-    .social-links {
-        grid-template-columns: 1fr;
-    }
-
-    .certs-grid {
-        grid-template-columns: repeat(2, 1fr);
+        width: 100px;
+        height: 100px;
     }
 }
         /* Scroll to Top Button */
