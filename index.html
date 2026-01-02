@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>xD4nt3 | Home Sweet Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <style>
@@ -39,6 +41,11 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            /* Agregar soporte para safe areas */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
         }
 
         /* Animated Background */
@@ -889,66 +896,100 @@
         }
 
         @media (max-width: 768px) {
-            .profile-image {
-        width: 140px;
-        height: 140px;
-        margin: 0 auto 20px auto;  /* ← Mantener centrado en móvil también */
+    #home-page {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        justify-content: flex-start;
+        padding-top: calc(env(safe-area-inset-top) + 40px);
+    }
+
+    .home-header {
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+
+    .home-alias {
+        font-size: 3em;
+        letter-spacing: 2px;
+    }
+
+    .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    .nav-card {
+        width: 160px;
+        height: 160px;
+    }
+
+    .nav-icon {
+        font-size: 2.8em;
+    }
+
+    .nav-title {
+        font-size: 1em;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 20px auto;
         display: block;
     }
-            .home-alias {
-                font-size: 3em;
-                letter-spacing: 2px;
-            }
 
-            .nav-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
+    .back-button {
+        top: max(20px, env(safe-area-inset-top));
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
 
-            .nav-card {
-                width: 160px;
-                height: 160px;
-            }
+    .page-title {
+        font-size: 2em;
+    }
 
-            .nav-icon {
-                font-size: 2.8em;
-            }
+    .content-page {
+        padding: calc(env(safe-area-inset-top) + 80px) 15px calc(env(safe-area-inset-bottom) + 50px);
+    }
 
-            .nav-title {
-                font-size: 1em;
-            }
+    .section {
+        padding: 24px 20px;
+    }
 
-            .ascii-art {
-                font-size: 0.5em;
-            }
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
 
-            .back-button {
-                top: 20px;
-                left: 20px;
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
+    .whoami-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .page-title {
-                font-size: 2em;
-            }
+    .ascii-art {
+        font-size: 0.5em;
+    }
 
-            .content-page {
-                padding: 80px 15px 50px;
-            }
+    .scroll-to-top {
+        bottom: max(20px, env(safe-area-inset-bottom) + 20px);
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
 
-            .section {
-                padding: 24px 20px;
-            }
+    .blog-article {
+        padding: 20px;
+        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
 
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
+    .blog-article-title {
+        font-size: 1.6em;
+    }
 
-            .whoami-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .blog-article-content {
+        font-size: 0.95em;
+    }
+}
         /* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;
@@ -1191,7 +1232,7 @@
     <!-- HOME PAGE -->
     <div id="home-page">
         <div class="home-header">
-            <img src="badass_pic.jpg" alt="xD4nt3 Profile" class="profile-image">
+            <img src="assets/badass_pic.jpg" alt="xD4nt3 Profile" class="profile-image">
             <h1 class="home-alias">xD4nt3</h1>
             <p class="home-subtitle">Alberto Carrasco Ruiz</p>
             <p class="home-tagline">Offensive Security Enthusiast</p>
