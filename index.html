@@ -142,7 +142,8 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    margin-bottom: 30px;
+    margin: 0 auto 30px auto;  /* ← Esto centra horizontalmente */
+    display: block;  /* ← Importante para que margin auto funcione */
     border: 4px solid rgba(139, 92, 246, 0.3);
     box-shadow: 
         0 0 30px rgba(139, 92, 246, 0.4),
@@ -158,6 +159,19 @@
     box-shadow: 
         0 0 40px rgba(139, 92, 246, 0.6),
         0 0 80px rgba(236, 72, 153, 0.3);
+}
+
+@keyframes profileGlow {
+    from { 
+        box-shadow: 
+            0 0 30px rgba(139, 92, 246, 0.4),
+            0 0 60px rgba(236, 72, 153, 0.2);
+    }
+    to { 
+        box-shadow: 
+            0 0 40px rgba(139, 92, 246, 0.6),
+            0 0 80px rgba(236, 72, 153, 0.4);
+    }
 }
 
 @keyframes profileGlow {
@@ -875,6 +889,12 @@
         }
 
         @media (max-width: 768px) {
+            .profile-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 20px auto;  /* ← Mantener centrado en móvil también */
+        display: block;
+    }
             .home-alias {
                 font-size: 3em;
                 letter-spacing: 2px;
@@ -1131,6 +1151,12 @@
 }
 
 @media (max-width: 768px) {
+    .profile-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 20px auto;  /* ← Mantener centrado en móvil también */
+        display: block;
+    }
     .blog-article {
         padding: 24px;
     }
