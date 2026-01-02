@@ -895,16 +895,40 @@
             }
         }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+    .nav-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: 700px;
+    }
+
+    .nav-card {
+        width: 180px;
+        height: 180px;
+    }
+
+    .home-alias {
+        font-size: 4em;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+
         @media (max-width: 768px) {
     #home-page {
-        padding-top: max(20px, env(safe-area-inset-top));
-        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        position: relative; /* ← Cambiar de fixed a relative */
+        height: auto; /* ← Permitir que crezca según contenido */
+        min-height: 100vh;
+        padding-top: max(40px, env(safe-area-inset-top) + 20px);
+        padding-bottom: max(40px, env(safe-area-inset-bottom) + 20px);
         justify-content: flex-start;
-        padding-top: calc(env(safe-area-inset-top) + 40px);
     }
 
     .home-header {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         margin-top: 20px;
     }
 
@@ -913,23 +937,34 @@
         letter-spacing: 2px;
     }
 
+    .home-subtitle {
+        font-size: 1.2em;
+    }
+
+    .home-tagline {
+        font-size: 1em;
+    }
+
     .nav-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
-        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        padding: 0 20px;
+        margin-bottom: 40px;
     }
 
     .nav-card {
-        width: 160px;
+        width: 100%;
+        max-width: 160px;
         height: 160px;
+        margin: 0 auto;
     }
 
     .nav-icon {
-        font-size: 2.8em;
+        font-size: 2.5em;
     }
 
     .nav-title {
-        font-size: 1em;
+        font-size: 0.95em;
     }
 
     .profile-image {
@@ -940,14 +975,19 @@
     }
 
     .back-button {
-        top: max(20px, env(safe-area-inset-top));
-        left: 20px;
+        top: max(15px, env(safe-area-inset-top) + 10px);
+        left: 15px;
         padding: 10px 20px;
         font-size: 0.9em;
     }
 
     .page-title {
         font-size: 2em;
+    }
+
+    .page-header {
+        padding: 30px 20px;
+        margin-bottom: 40px;
     }
 
     .content-page {
@@ -988,6 +1028,14 @@
 
     .blog-article-content {
         font-size: 0.95em;
+    }
+
+    .social-links {
+        grid-template-columns: 1fr;
+    }
+
+    .certs-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
         /* Scroll to Top Button */
