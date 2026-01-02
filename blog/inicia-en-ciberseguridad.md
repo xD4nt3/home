@@ -20,7 +20,7 @@ Aquí va una verdad incómoda: **los hackers que ves en LinkedIn presumiendo sus
 
 La diferencia es que ellos siguieron... Tú también puedes, la persistencia aquí es la clave, te lo dice alguien que labora en ciberseguridad en un país bastante ajeno al tema.
 
-## Tu Hoja de Ruta (Sin Bullshit)
+## Tu Hoja de Ruta
 
 Olvídate de esos planes de estudio de 500 horas que te abruman antes de empezar. Aquí está lo que **realmente necesitas** para arrancar:
 
@@ -42,10 +42,10 @@ No hay forma de escapar de esto. Linux es tu nuevo hogar. La bueno es que NO es 
 
 No necesitas un doctorado en redes o un certificado gratuito de Platzi, pero sí entender lo básico:
 
-- **¿Qué es una IP?** (Tu dirección en internet)
-- **¿Qué hace un puerto?** (Las puertas de tu casa digital)
-- **¿HTTP vs HTTPS?** (Uno es como gritar tus secretos, el otro es susurrarlos)
-- **¿DNS?** (El GPS de internet)
+- **¿Qué es una IP?**
+- **¿Qué hace un puerto?**
+- **¿HTTP vs HTTPS?**
+- **¿DNS?**
 
 ### 3. Aprende a Programar (Un Poco)
 
@@ -73,13 +73,13 @@ Este es el momento de la verdad. Y va a ser frustrante. Y glorioso. Y maravillos
 
 ## Los Errores que TODOS Cometemos (Y Cómo No Cometerlos Tú)
 
-### ❌ Error #1: Comprar Cursos de $500 el Primer Día
+### Error #1: Comprar Cursos de $500 el Primer Día
 
 Hermano, YouTube tiene más contenido gratuito de ciberseguridad del que podrás consumir en 5 años. Empieza con lo gratis. 
 
 Eso sí, cuando ya sepas qué te gusta y estés listo para profundizar en serio (tipo después de 3-6 meses), ahí SÍ vale la pena invertir en formación estructurada. De hecho, pronto estaré lanzando cursos en **PROFFSEC Academy** enfocados en seguridad ofensiva desde los fundamentos, hasta lo más complejo... con laboratorios reales y sin relleno. Pero primero necesitas las bases. No pongas el carro delante del caballo.
 
-### ❌ Error #2: Intentar Aprenderlo TODO al Mismo Tiempo
+### Error #2: Intentar Aprenderlo TODO al Mismo Tiempo
 
 No puedes ser experto en:
 - Web hacking
@@ -91,31 +91,30 @@ No puedes ser experto en:
 
 Elige UNO. Domínalo. Luego expande.
 
-### ❌ Error #3: No Tomar Notas
+### Error #3: No Tomar Notas
 
 Tu cerebro es una papa que olvida comandos a los 5 minutos. Usa Notion, Obsidian, o un maldito cuaderno. Documenta TODO.
 
-### ❌ Error #4: No Unirse a la Comunidad
+### Error #4: No Unirse a una Comunidad
 
 La ciberseguridad tiene una de las comunidades más solidarias que existen. Únete a:
-- Discord de HTB, TryHackMe
-- Subreddit r/netsec, r/AskNetsec
+- Discord de HTB, TryHackMe, PROFFSEC
 - Twitter (sígueme, obvio)
 
 Pregunta. Comparte. Aprende.
 
 ## La Mentalidad que Necesitas
 
-Escucha esto bien: **la ciberseguridad es 20% conocimiento técnico y 80% mentalidad**.
+Lee esto bien: **la ciberseguridad es 20% conocimiento técnico y 80% mentalidad**.
 
-Vas a necesitar:
+Por lo que vas a necesitar:
 
 1. **Curiosidad obsesiva** → "¿Cómo funciona esto?" debe ser tu frase favorita
-2. **Resiliencia** → Vas a fallar. Mucho. Acostúmbrate.
-3. **Pensamiento lateral** → Las soluciones rara vez son obvias
+2. **Resiliencia** → Vas a fallar mucho, acostúmbrate.
+3. **Pensamiento lateral o fuera de la caja** → Las soluciones rara vez son obvias
 4. **Síndrome del impostor controlado** → Todos lo tenemos. Ignora esa basura y sigue adelante.
 
-## Tu Plan de 90 Días (El Que Realmente Funciona)
+## Plan de 90 Días
 
 **Días 1-30: Fundamentos**
 - Linux básico (4 horas/semana)
@@ -139,17 +138,17 @@ Vas a necesitar:
 Respuesta corta: **Depende**.
 
 **Para empezar:**
-- ❌ CEH → Caro y desactualizado, pura paja
-- ✅ eJPT → Barato y práctico
-- ✅ eCPPT → Intermedio y enfocado en Active Directory
-- ✅ CRTO I y II → Lo mejor que existe enfocado en Red Teaming (Rastamouse eres mi ídolo)
-- ✅ CPTS,OSCP → El santo grial (pero espera 6-12 meses antes de intentarlo)
+- CEH → Caro y desactualizado, pura paja
+- eJPT → Barato y práctico
+- eCPPT → Intermedio y enfocado en Active Directory
+- CRTO I y II → Lo mejor que existe enfocado en Red Teaming (Rastamouse eres mi ídolo)
+- CPTS,OSCP → El santo grial (pero espera 6-12 meses antes de intentarlo)
 
-**Pro tip:** Las certificaciones abren puertas, pero el conocimiento REAL es lo que te mantiene adentro.
+Créeme, las certificaciones abren puertas,sobre todo en nuestro país lleno de gente de talento humano que valora más los cartones. Pero ten muy en mente que el conocimiento REAL es lo que te mantendrá vigente y te ayudará a crecer profesionalmente.
 
 ## El Momento de la Verdad
 
-Aquí estás. Has leído hasta el final. Eso ya dice mucho de ti.
+Pues aquí estás... has leído hasta el final y eso ya dice mucho de tí.
 
 Ahora tienes dos opciones:
 
@@ -164,14 +163,11 @@ Ahora tienes dos opciones:
 
 ## Recursos Para Empezar AHORA MISMO (Gratis)
 
-- **TryHackMe** → [tryhackme.com](https://tryhackme.com) (Empieza por el path "Complete Beginner")
+- **TryHackMe** → [tryhackme.com](https://tryhackme.com)
 - **YouTube**: 
   - xD4nt3 (Obviamente no me iba a ignorar a mí mismo)
   - John Hammond
   - IppSec (write-ups de HTB)
-- **Libros gratuitos**: 
-  - "The Web Application Hacker's Handbook" (Google it)
-  - "Penetration Testing" de Georgia Weidman
 - **Esta web** → Revisa la sección de writeups y mantente atento a PROFFSEC Academy para cuando estés listo para el siguiente nivel
 
 ---
@@ -192,4 +188,4 @@ Nos vemos del otro lado.
 
 **— tu amigable vecino, xD4nt3**
 
-> P.D.: Cuando hackees tu primera máquina, mándame un DM. Quiero celebrarlo contigo. En serio hombre.
+> P.D.: Cuando hackees tu primera máquina, mándame un DM. Quiero celebrarlo contigo. en serio hombre.
