@@ -917,226 +917,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    #home-page {
-        position: relative;
-        height: auto;
-        min-height: 100vh;
-        padding-top: max(40px, env(safe-area-inset-top) + 20px);
-        padding-bottom: max(40px, env(safe-area-inset-bottom) + 20px);
-        justify-content: flex-start;
-    }
-
-    .home-header {
-        margin-bottom: 50px;
-        margin-top: 20px;
-    }
-
-    .home-alias {
-        font-size: 2.8em;
-        letter-spacing: 2px;
-    }
-
-    .home-subtitle {
-        font-size: 1.1em;
-    }
-
-    .home-tagline {
-        font-size: 0.95em;
-    }
-
-    .profile-image {
-        width: 110px;
-        height: 110px;
-        margin: 0 auto 20px auto;
-        display: block;
-    }
-
-    /* Grid de navegación - 2 columnas */
-    .nav-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        padding: 0 20px;
-        margin-bottom: 40px;
-        max-width: 100%;
-    }
-
-    /* Cards cuadrados */
-    .nav-card {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .nav-icon {
-        font-size: 2.8em;
-        margin-bottom: 12px;
-    }
-
-    .nav-title {
-        font-size: 0.95em;
-        text-align: center;
-    }
-
-    /* Páginas de contenido */
-    .back-button {
-        top: max(10px, env(safe-area-inset-top) + 5px);
-        left: 15px;
-        padding: 10px 20px;
-        font-size: 0.9em;
-        position: fixed;
-        z-index: 1001;
-    }
-
-    .content-page {
-        padding-top: 70px !important; /* ← CRÍTICO: Reducir padding */
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
-    }
-
-    .container {
-        padding-top: 0;
-        margin-top: 0;
-    }
-    /* Para la página de artículos del blog específicamente */
-    #blog-article-page .container {
-        padding-top: 0;
-    }
-    #blog-page .container {
-        padding-top: 0;
-    }
-    /* Asegurar que todas las páginas empiecen arriba */
-    .content-page.active {
-        padding-top: 70px;
-    }
-    /* El botón de volver debe estar siempre visible */
-    .back-button {
-        position: fixed;
-        top: max(10px, env(safe-area-inset-top) + 5px);
-        z-index: 1000;
-    }
-
-    .page-header {
-        padding: 25px 20px;
-        margin-bottom: 30px;
-        margin-top: 0;
-    }
-
-    .page-title {
-        font-size: 2em;
-    }
-
-    .page-subtitle {
-        font-size: 1em;
-    }
-
-    .section {
-        padding: 24px 20px;
-    }
-
-    .section-title {
-        font-size: 1.5em;
-    }
-
-    /* Grid de 1 columna para contenido */
-    .grid-3 {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .card {
-        padding: 24px;
-    }
-
-    .card h3 {
-        font-size: 1.1em;
-    }
-
-    /* Blog */
-    .blog-article {
-        padding: 20px;
-        margin-top: 0;
-        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
-    }
-
-    .blog-article-header {
-        padding-top: 0;
-        margin-top: 0;
-    }
-
-    .blog-article-title {
-        font-size: 1.6em;
-    }
-
-    .blog-article-content {
-        font-size: 0.95em;
-    }
-
-    .blog-article-content h1 {
-        font-size: 1.6em;
-    }
-
-    .blog-article-content h2 {
-        font-size: 1.3em;
-    }
-
-    .blog-article-content h3 {
-        font-size: 1.1em;
-    }
-
-    .blog-article-content pre {
-        padding: 15px;
-        font-size: 0.85em;
-        overflow-x: auto;
-    }
-
-    .blog-article-content code {
-        font-size: 0.85em;
-    }
-
-    /* About page */
-    .whoami-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ascii-art {
-        font-size: 0.5em;
-    }
-
-    .certs-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .experience-item {
-        padding: 20px;
-    }
-
-    /* Links page */
-    .social-links {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .contact-info {
-        padding: 20px;
-    }
-
-    /* Scroll to top button */
-    .scroll-to-top {
-        bottom: max(20px, env(safe-area-inset-bottom) + 20px);
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-}
         /* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;
@@ -1337,7 +1117,45 @@
     color: var(--primary-light);
     font-weight: 600;
 }
+@media (max-width: 768px) {
+    .content-page.active {
+        padding-top: 60px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 
+    #blog-page.active,
+    #blog-article-page.active,
+    #academy-page.active,
+    #videos-page.active,
+    #resources-page.active,
+    #about-page.active,
+    #links-page.active {
+        padding-top: 60px !important;
+    }
+
+    .content-page .container {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .content-page .page-header {
+        margin-top: 0 !important;
+        padding-top: 25px !important;
+    }
+
+    .blog-article {
+        margin-top: 0 !important;
+        padding-top: 20px !important;
+    }
+
+    .back-button {
+        position: fixed !important;
+        top: 10px !important;
+        left: 15px !important;
+        z-index: 1001 !important;
+    }
+}
     </style>
 </head>
 <body>
