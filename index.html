@@ -138,6 +138,40 @@
             margin-bottom: 80px;
             animation: fadeInDown 1s ease-out;
         }
+        .profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    border: 4px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 
+        0 0 30px rgba(139, 92, 246, 0.4),
+        0 0 60px rgba(236, 72, 153, 0.2);
+    object-fit: cover;
+    animation: fadeInDown 1s ease-out, profileGlow 3s ease-in-out infinite alternate;
+    transition: all 0.4s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+    box-shadow: 
+        0 0 40px rgba(139, 92, 246, 0.6),
+        0 0 80px rgba(236, 72, 153, 0.3);
+}
+
+@keyframes profileGlow {
+    from { 
+        box-shadow: 
+            0 0 30px rgba(139, 92, 246, 0.4),
+            0 0 60px rgba(236, 72, 153, 0.2);
+    }
+    to { 
+        box-shadow: 
+            0 0 40px rgba(139, 92, 246, 0.6),
+            0 0 80px rgba(236, 72, 153, 0.4);
+    }
+}
 
         @keyframes fadeInDown {
             from { 
@@ -1131,6 +1165,7 @@
     <!-- HOME PAGE -->
     <div id="home-page">
         <div class="home-header">
+            <img src="badass_pic.jpg" alt="xD4nt3 Profile" class="profile-image">
             <h1 class="home-alias">xD4nt3</h1>
             <p class="home-subtitle">Alberto Carrasco Ruiz</p>
             <p class="home-tagline">Offensive Security Enthusiast</p>
