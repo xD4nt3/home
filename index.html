@@ -928,7 +928,7 @@
     }
 
     .home-header {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         margin-top: 20px;
     }
 
@@ -945,43 +945,6 @@
         font-size: 0.95em;
     }
 
-    .nav-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 0 20px;
-        margin-bottom: 40px;
-        max-width: 100%;
-    }
-
-    .nav-card {
-        width: 100%; /* Ocupar todo el ancho disponible */
-        height: 0;
-        padding-bottom: 100%; /* Mantener aspecto cuadrado 1:1 */
-        position: relative;
-        max-width: none; /* Quitar limitación de ancho */
-    }
-
-    /* Contenido interno del card */
-    .nav-card > * {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .nav-icon {
-        font-size: 3em;
-        margin-bottom: 0;
-        top: 40%;
-    }
-
-    .nav-title {
-        font-size: 1em;
-        top: 70%;
-        width: 80%;
-        text-align: center;
-    }
-
     .profile-image {
         width: 110px;
         height: 110px;
@@ -989,6 +952,39 @@
         display: block;
     }
 
+    /* Grid de navegación - 2 columnas */
+    .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 0 20px;
+        margin-bottom: 40px;
+        max-width: 100%;
+    }
+
+    /* Cards cuadrados */
+    .nav-card {
+        width: 100%;
+        aspect-ratio: 1 / 1; /* Mantiene proporción cuadrada */
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .nav-icon {
+        font-size: 2.8em;
+        margin-bottom: 12px;
+    }
+
+    .nav-title {
+        font-size: 0.95em;
+        text-align: center;
+    }
+
+    /* Páginas de contenido */
     .back-button {
         top: max(15px, env(safe-area-inset-top) + 10px);
         left: 15px;
@@ -996,8 +992,8 @@
         font-size: 0.9em;
     }
 
-    .page-title {
-        font-size: 2em;
+    .content-page {
+        padding: calc(env(safe-area-inset-top) + 80px) 15px calc(env(safe-area-inset-bottom) + 50px);
     }
 
     .page-header {
@@ -1005,12 +1001,12 @@
         margin-bottom: 40px;
     }
 
-    .page-subtitle {
-        font-size: 1em;
+    .page-title {
+        font-size: 2em;
     }
 
-    .content-page {
-        padding: calc(env(safe-area-inset-top) + 80px) 15px calc(env(safe-area-inset-bottom) + 50px);
+    .page-subtitle {
+        font-size: 1em;
     }
 
     .section {
@@ -1021,8 +1017,10 @@
         font-size: 1.5em;
     }
 
+    /* Grid de 1 columna para contenido */
     .grid-3 {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .card {
@@ -1033,21 +1031,7 @@
         font-size: 1.1em;
     }
 
-    .whoami-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ascii-art {
-        font-size: 0.5em;
-    }
-
-    .scroll-to-top {
-        bottom: max(20px, env(safe-area-inset-bottom) + 20px);
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-
+    /* Blog */
     .blog-article {
         padding: 20px;
         margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
@@ -1073,20 +1057,45 @@
         font-size: 1.1em;
     }
 
-    .social-links {
+    .blog-article-content pre {
+        padding: 15px;
+        font-size: 0.85em;
+    }
+
+    /* About page */
+    .whoami-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ascii-art {
+        font-size: 0.5em;
     }
 
     .certs-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .experience-item {
         padding: 20px;
     }
 
+    /* Links page */
+    .social-links {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
     .contact-info {
         padding: 20px;
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+        bottom: max(20px, env(safe-area-inset-bottom) + 20px);
+        right: 20px;
+        width: 45px;
+        height: 45px;
     }
 }
         /* Scroll to Top Button */
