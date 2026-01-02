@@ -1118,42 +1118,225 @@
     font-weight: 600;
 }
 @media (max-width: 768px) {
-    .content-page.active {
-        padding-top: 60px !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
+    /* HOME PAGE - Permitir scroll y ajustar tamaños */
+    html, body {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        height: auto;
     }
 
-    #blog-page.active,
-    #blog-article-page.active,
-    #academy-page.active,
-    #videos-page.active,
-    #resources-page.active,
-    #about-page.active,
-    #links-page.active {
-        padding-top: 60px !important;
+    #home-page {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+        padding-top: max(20px, env(safe-area-inset-top) + 10px);
+        padding-bottom: max(30px, env(safe-area-inset-bottom) + 20px);
+        justify-content: flex-start;
+        overflow-y: visible;
     }
 
-    .content-page .container {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
+    .home-header {
+        margin-bottom: 25px;
+        margin-top: 10px;
     }
 
-    .content-page .page-header {
-        margin-top: 0 !important;
-        padding-top: 25px !important;
+    .home-alias {
+        font-size: 2.4em;
+        letter-spacing: 2px;
     }
 
-    .blog-article {
-        margin-top: 0 !important;
-        padding-top: 20px !important;
+    .home-subtitle {
+        font-size: 1em;
     }
 
+    .home-tagline {
+        font-size: 0.85em;
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 15px auto;
+        display: block;
+    }
+
+    /* Grid de navegación - 2 columnas compacto */
+    .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 15px;
+        margin-bottom: 25px;
+        max-width: 100%;
+    }
+
+    /* Cards cuadrados compactos */
+    .nav-card {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        min-height: 120px;
+        max-height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 10px;
+    }
+
+    .nav-icon {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+    }
+
+    .nav-title {
+        font-size: 0.85em;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    /* Páginas de contenido */
     .back-button {
         position: fixed !important;
         top: 10px !important;
         left: 15px !important;
-        z-index: 1001 !important;
+        padding: 10px 20px;
+        font-size: 0.9em;
+        z-index: 1001;
+    }
+
+    .content-page {
+        padding: 60px 15px 30px 15px !important;
+    }
+
+    .content-page.active {
+        padding-top: 60px !important;
+    }
+
+    .container {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .page-header {
+        padding: 25px 20px;
+        margin-bottom: 30px;
+        margin-top: 0 !important;
+    }
+
+    .page-title {
+        font-size: 1.8em;
+    }
+
+    .page-subtitle {
+        font-size: 0.95em;
+    }
+
+    .section {
+        padding: 20px 15px;
+    }
+
+    .section-title {
+        font-size: 1.4em;
+    }
+
+    /* Grid de 1 columna para contenido */
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card h3 {
+        font-size: 1.05em;
+    }
+
+    /* Blog */
+    .blog-article {
+        padding: 18px;
+        margin-top: 0 !important;
+        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
+
+    .blog-article-header {
+        padding-top: 0;
+        margin-top: 0 !important;
+    }
+
+    .blog-article-title {
+        font-size: 1.5em;
+    }
+
+    .blog-article-content {
+        font-size: 0.92em;
+    }
+
+    .blog-article-content h1 {
+        font-size: 1.5em;
+    }
+
+    .blog-article-content h2 {
+        font-size: 1.25em;
+    }
+
+    .blog-article-content h3 {
+        font-size: 1.1em;
+    }
+
+    .blog-article-content pre {
+        padding: 12px;
+        font-size: 0.8em;
+        overflow-x: auto;
+    }
+
+    .blog-article-content code {
+        font-size: 0.85em;
+    }
+
+    /* About page */
+    .whoami-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ascii-art {
+        font-size: 0.45em;
+    }
+
+    .certs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .cert-badge {
+        padding: 15px;
+    }
+
+    .experience-item {
+        padding: 18px;
+    }
+
+    /* Links page */
+    .social-links {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .social-card {
+        padding: 20px;
+    }
+
+    .contact-info {
+        padding: 18px;
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+        bottom: max(15px, env(safe-area-inset-bottom) + 15px);
+        right: 15px;
+        width: 42px;
+        height: 42px;
     }
 }
     </style>
