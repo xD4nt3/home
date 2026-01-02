@@ -1300,6 +1300,22 @@
 }
 
 @media (max-width: 768px) {
+    .content-page {
+        padding: calc(env(safe-area-inset-top) + 20px) 15px calc(env(safe-area-inset-bottom) + 20px);
+        padding-top: 70px; /* Reducir el padding superior */
+    }
+
+    .back-button {
+        top: max(10px, env(safe-area-inset-top) + 5px);
+        left: 15px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .page-header {
+        padding: 25px 20px;
+        margin-bottom: 30px;
+        margin-top: 0; /* Asegurar que no haya margen superior extra */
+    }
     .profile-image {
         width: 140px;
         height: 140px;
@@ -1307,7 +1323,13 @@
         display: block;
     }
     .blog-article {
-        padding: 24px;
+        padding: 20px;
+        margin-top: 0; /* Sin margen superior */
+        margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
+    .blog-article-header {
+        padding-top: 0;
+        margin-top: 0;
     }
 
     .blog-article-title {
