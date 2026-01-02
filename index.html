@@ -1194,22 +1194,33 @@
         line-height: 1.2;
     }
 
-    /* Páginas de contenido */
+    /* Páginas de contenido - FIX: PADDING REDUCIDO */
     .back-button {
         position: fixed !important;
-        top: 10px !important;
-        left: 15px !important;
-        padding: 10px 20px;
-        font-size: 0.9em;
-        z-index: 1001;
+        top: 8px !important;
+        left: 12px !important;
+        padding: 8px 18px;
+        font-size: 0.88em;
+        z-index: 1001 !important;
     }
 
     .content-page {
-        padding: 60px 15px 30px 15px !important;
+        padding: 50px 15px 30px 15px !important;
     }
 
     .content-page.active {
-        padding-top: 60px !important;
+        padding-top: 50px !important;
+    }
+
+    /* Específicamente para cada página */
+    #blog-page,
+    #blog-article-page,
+    #academy-page,
+    #videos-page,
+    #resources-page,
+    #about-page,
+    #links-page {
+        padding-top: 50px !important;
     }
 
     .container {
@@ -1218,9 +1229,9 @@
     }
 
     .page-header {
-        padding: 25px 20px;
-        margin-bottom: 30px;
+        padding: 20px 15px;
         margin-top: 0 !important;
+        margin-bottom: 25px;
     }
 
     .page-title {
@@ -1233,6 +1244,11 @@
 
     .section {
         padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+
+    .section:first-of-type {
+        margin-top: 0 !important;
     }
 
     .section-title {
@@ -1253,15 +1269,16 @@
         font-size: 1.05em;
     }
 
-    /* Blog */
+    /* Blog - FIX: SIN PADDING TOP EXTRA */
     .blog-article {
         padding: 18px;
         margin-top: 0 !important;
+        padding-top: 0 !important;
         margin-bottom: calc(env(safe-area-inset-bottom) + 20px);
     }
 
     .blog-article-header {
-        padding-top: 0;
+        padding-top: 0 !important;
         margin-top: 0 !important;
     }
 
@@ -1337,6 +1354,36 @@
         right: 15px;
         width: 42px;
         height: 42px;
+    }
+}
+
+/* Para pantallas MUY pequeñas */
+@media (max-width: 400px) {
+    .home-alias {
+        font-size: 2.2em;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-grid {
+        gap: 10px;
+        padding: 0 12px;
+    }
+
+    .nav-card {
+        min-height: 110px;
+        padding: 12px 8px;
+    }
+
+    .nav-icon {
+        font-size: 2em;
+    }
+
+    .nav-title {
+        font-size: 0.8em;
     }
 }
     </style>
@@ -2042,6 +2089,40 @@ window.addEventListener('hashchange', handleRouting);
 
 // Cargar la ruta inicial cuando se carga la página
 window.addEventListener('load', handleRouting);
+
+        // ===== FIX MOBILE PADDING =====
+function fixContentPagePadding() {
+    if (window.innerWidth <= 768) {
+        const contentPages = document.querySelectorAll('.content-page');
+        contentPages.forEach(page => {
+            page.style.paddingTop = '55px';
+        });
+    }
+}
+
+window.addEventListener('load', fixContentPagePadding);
+window.addEventListener('resize', fixContentPagePadding);
+
+// Observer para cuando se activan páginas
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                const target = mutation.target;
+                if (target.classList.contains('content-page') && 
+                    target.classList.contains('active') && 
+                    window.innerWidth <= 768) {
+                    target.style.paddingTop = '55px';
+                    window.scrollTo(0, 0);
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll('.content-page').forEach(page => {
+        observer.observe(page, { attributes: true });
+    });
+});
     </script>
 </body>
 </html>
