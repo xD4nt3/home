@@ -377,8 +377,8 @@
     background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(139, 0, 0, 0.25), transparent 40%);
 }
         .videos-icon {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     font-size: unset;
     margin-bottom: 16px;
@@ -1556,7 +1556,7 @@
 
         <div class="nav-grid">
             <div class="nav-card" onclick="showPage('blog')">
-                <img src="assets/videos.png" alt="Videos" class="nav-icon videos-icon">
+                <div class="nav-icon">📝</div>
                 <div class="nav-title">Blog</div>
             </div>
 
@@ -1566,7 +1566,7 @@
             </div>
 
             <div class="nav-card videos" onclick="showPage('videos')">
-                <div class="nav-icon">📺</div>
+                <img src="assets/videos.png" alt="Videos" class="nav-icon videos-icon">
                 <div class="nav-title">Videos</div>
             </div>
 
