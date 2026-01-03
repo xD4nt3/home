@@ -376,6 +376,45 @@
 .nav-card.academy:hover::before {
     background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(139, 0, 0, 0.25), transparent 40%);
 }
+        .videos-icon {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    font-size: unset;
+    margin-bottom: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.nav-card.videos:hover {
+    border-color: rgba(100, 50, 150, 0.9);
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.4), rgba(45, 0, 80, 0.6));
+    box-shadow: 
+        0 20px 50px rgba(100, 0, 150, 0.5),
+        0 0 60px rgba(75, 0, 130, 0.3),
+        0 0 0 1px rgba(120, 50, 180, 0.3) inset,
+        inset 0 0 30px rgba(100, 0, 150, 0.15);
+}
+
+.nav-card.videos:hover .videos-icon {
+    transform: scale(1.2);
+    filter: 
+        drop-shadow(0 0 15px rgba(180, 100, 255, 0.7))
+        drop-shadow(0 0 30px rgba(120, 0, 200, 0.5))
+        brightness(1.1);
+}
+
+.nav-card.videos:hover .nav-title {
+    color: rgba(200, 150, 255, 1);
+}
+
+.nav-card.videos::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(100, 0, 150, 0.15), transparent 40%);
+}
+
+.nav-card.videos:hover::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(100, 0, 150, 0.25), transparent 40%);
+}
 
         .nav-icon {
             font-size: 3.5em;
@@ -1517,7 +1556,7 @@
 
         <div class="nav-grid">
             <div class="nav-card" onclick="showPage('blog')">
-                <div class="nav-icon">📝</div>
+                <img src="assets/videos.png" alt="Videos" class="nav-icon videos-icon">
                 <div class="nav-title">Blog</div>
             </div>
 
@@ -1526,7 +1565,7 @@
                 <div class="nav-title">Academia</div>
             </div>
 
-            <div class="nav-card" onclick="showPage('videos')">
+            <div class="nav-card videos" onclick="showPage('videos')">
                 <div class="nav-icon">📺</div>
                 <div class="nav-title">Videos</div>
             </div>
