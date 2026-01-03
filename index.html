@@ -416,6 +416,46 @@
     background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(100, 0, 150, 0.25), transparent 40%);
 }
 
+        .writeups-icon {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    font-size: unset;
+    margin-bottom: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.nav-card.writeups:hover {
+    border-color: rgba(0, 180, 100, 0.9);
+    background: linear-gradient(135deg, rgba(0, 100, 60, 0.4), rgba(0, 60, 40, 0.6));
+    box-shadow: 
+        0 20px 50px rgba(0, 150, 80, 0.5),
+        0 0 60px rgba(0, 100, 60, 0.3),
+        0 0 0 1px rgba(0, 200, 120, 0.3) inset,
+        inset 0 0 30px rgba(0, 150, 80, 0.15);
+}
+
+.nav-card.writeups:hover .writeups-icon {
+    transform: scale(1.2);
+    filter: 
+        drop-shadow(0 0 15px rgba(100, 255, 180, 0.7))
+        drop-shadow(0 0 30px rgba(0, 200, 100, 0.5))
+        brightness(1.1);
+}
+
+.nav-card.writeups:hover .nav-title {
+    color: rgba(150, 255, 200, 1);
+}
+
+.nav-card.writeups::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 150, 80, 0.15), transparent 40%);
+}
+
+.nav-card.writeups:hover::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 150, 80, 0.25), transparent 40%);
+}
+
         .nav-icon {
             font-size: 3.5em;
             margin-bottom: 16px;
@@ -1570,8 +1610,8 @@
                 <div class="nav-title">Videos</div>
             </div>
 
-            <div class="nav-card" onclick="showPage('resources')">
-                <div class="nav-icon">📚</div>
+            <div class="nav-card writeups" onclick="showPage('resources')">
+                <img src="assets/writeups.png" alt="Writeups" class="nav-icon writeups-icon">
                 <div class="nav-title">Writeups</div>
             </div>
 
