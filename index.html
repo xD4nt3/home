@@ -346,11 +346,36 @@
         }
 
         .nav-card.academy:hover {
-            border-color: var(--red);
-            box-shadow: 
-                0 20px 40px rgba(239, 68, 68, 0.3),
-                0 0 0 1px rgba(239, 68, 68, 0.1) inset;
-        }
+    border-color: rgba(180, 30, 30, 0.9);
+    background: linear-gradient(135deg, rgba(100, 0, 0, 0.4), rgba(60, 0, 0, 0.6));
+    box-shadow: 
+        0 20px 50px rgba(139, 0, 0, 0.5),
+        0 0 60px rgba(100, 0, 0, 0.3),
+        0 0 0 1px rgba(180, 30, 30, 0.3) inset,
+        inset 0 0 30px rgba(139, 0, 0, 0.15);
+}
+
+.academy-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    font-size: unset;
+    margin-bottom: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.nav-card.academy:hover .academy-icon {
+    transform: scale(1.2);
+    filter: 
+        drop-shadow(0 0 15px rgba(255, 60, 60, 0.7))
+        drop-shadow(0 0 30px rgba(180, 0, 0, 0.5))
+        brightness(1.1);
+}
+
+.nav-card.academy:hover::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(139, 0, 0, 0.25), transparent 40%);
+}
 
         .nav-icon {
             font-size: 3.5em;
@@ -1497,7 +1522,7 @@
             </div>
 
             <div class="nav-card academy" onclick="showPage('academy')">
-                <div class="nav-icon">🎓</div>
+                <img src="assets/academy.png" alt="ProffSEC Academy" class="nav-icon academy-icon">
                 <div class="nav-title">ProffSEC Academy</div>
             </div>
 
